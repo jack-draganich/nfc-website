@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gift Voucher</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f0f;
+      font-family: system-ui, sans-serif;
+      padding: 24px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .gift-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+    }
+
+    .title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 8px;
+    }
+
+    .heading {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 32px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 32px;
+    }
+
+    .code-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 12px;
+    }
+
+    .code {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 16px 32px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: all;
+    }
+
+    .code:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .copy-hint {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3);
+      margin-top: 12px;
+    }
+
+    .copied {
+      color: #4ade80;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="gift-icon">🎁</div>
+    <p class="title">You've received a</p>
+    <h1 class="heading">Gift Voucher</h1>
+    <hr class="divider" />
+    <p class="code-label">Your code</p>
+    <div class="code" onclick="copyCode(this)">XXXX-XXXX</div>
+    <p class="copy-hint" id="hint">Tap to copy</p>
+  </div>
+
+  <script>
+    function copyCode(el) {
+      navigator.clipboard.writeText(el.innerText).then(() => {
+        const hint = document.getElementById('hint');
+        hint.textContent = 'Copied!';
+        hint.classList.add('copied');
+        setTimeout(() => {
+          hint.textContent = 'Tap to copy';
+          hint.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
